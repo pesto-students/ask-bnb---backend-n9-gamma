@@ -1,2 +1,1 @@
-# ASKBNB API
-
+# AskBnB
