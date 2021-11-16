@@ -5,29 +5,28 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userId: {
+  user_id: {
     type: String,
     required: true,
   },
-  roomId: {
+  hotel_id: {
     type: String,
     required: true,
   },
-  checkinDate: {
-    type: Date,
-    required: true,
-  },
-  checkoutDate: {
-    type: Date,
-    required: true,
-  },
-  paymentId: {
+  check_in: {
     type: String,
     required: true,
   },
-  paymentStatus: {
+  check_out: {
     type: String,
+    required: true,
   },
+  rooms_booked: [{ room_type: String, room_id: String, price: Number }],
+  total_amount: {
+    type: String,
+    required: true,
+  },
+  payment_id: String,
 });
 
 module.exports = mongoose.model('Booking', bookingSchema);
