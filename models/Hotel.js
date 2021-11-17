@@ -1,24 +1,48 @@
 const mongoose = require('mongoose');
 
 const hotelSchema = new mongoose.Schema({
-  name: {
+  hotel_id: {
     type: String,
-    required: true,
+    required: false,
     min: 6,
   },
-  hotelDetail: {
+  hotel_name: {
     type: String,
     required: true,
   },
-  note: {
+  description: {
     type: String,
     required: true,
   },
-  amnities: {
+  address: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  zip_code: {
+    type: String,
+    required: true,
+  },
+  room_collection: {
+    type: Object,
+    required: true,
+  },
+  amenities: {
     type: Array,
     required: true,
   },
-  indexImages: {
+  indexImage: {
     type: String,
     required: true,
   },
@@ -34,9 +58,14 @@ const hotelSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  pricePerNight: {
+  location: {
     type: String,
-    required: true,
+    required: false,
+    default: 'Bangalore',
+  },
+  totalRooms: {
+    type: Number,
+    required: false,
   },
 });
 
