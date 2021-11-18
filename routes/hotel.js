@@ -5,12 +5,18 @@ const {
   getHotelIds,
   getHotelRooms,
   getHotels,
+  blockRooms,
 } = require('../controllers/hotel');
 
 // @route   POST api/hotel/add
 // @desc    Add new hotel
 // @access  Public
 router.post('/add', add);
+
+// @route   POST api/hotel/add
+// @desc    Add new hotel
+// @access  Public
+router.post('/blockRooms', blockRooms);
 
 // @route   GET api/hotel/getHotels
 // @desc    Get all hotel lists

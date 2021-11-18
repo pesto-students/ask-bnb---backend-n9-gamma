@@ -82,9 +82,50 @@ exports.add = async (req, res) => {
   }
 };
 
+// BLOCK ROOMS FUNCTION
+exports.blockRooms = async (req, res) => {
+  // Initialize the response object to send
+
+  const { hotel_id, selected_rooms, startDate, endDate } = req.body;
+
+  try {
+    const hotel = await Hotel.findOne({ hotel_id });
+
+    selected_rooms.forEach(room => {
+      const currentRoom = hotel.room_collection.standard.filter(
+        item => item.room_id === room.room_id
+      )[0];
+      currentRoom.bookingDurations.push([startDate, endDate]);
+    });
+
+    const data = await Hotel.updateOne(
+      { hotel_id },
+      { $set: { room_collection: hotel.room_collection } },
+      { upsert: true }
+    );
+
+    res.send({
+      ...responseObject,
+      status: 'Success',
+      code: 200,
+      message: 'Hotel added successfully',
+      data: data,
+    });
+    return;
+  } catch (err) {
+    res.send({
+      ...responseObject,
+      status: 'Error',
+      code: 400,
+      message: 'Unfortunately, some error occured. Try after sometime.',
+      error_data: err,
+    });
+  }
+};
+
 // GET HOTEL LIST
 exports.getHotels = async (req, res) => {
-  const { page = 0, location, select } = req.query;
+  const { page = 0, location, select = '' } = req.query;
 
   // Get all hotels list from database.
 
@@ -151,7 +192,6 @@ exports.update = async (_, res) => {
     { upsert: true }
   );
 
-  // console.log(hotelRooms);
   // const resp = await Hotel.find({ room_collection: 'room_collection' });
 
   res.send({
