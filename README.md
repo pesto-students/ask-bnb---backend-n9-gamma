@@ -6,6 +6,7 @@ This is the API for hotel room booking application. This API is divided into dif
   * **Booking**
   * **Hotels**
   * **Rooms**
+
 The API provides responses in the following standard JSON format
 ```
 {
