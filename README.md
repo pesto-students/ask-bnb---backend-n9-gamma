@@ -67,7 +67,7 @@ appropiate **error code and message**
 **NOTE:** To access **PROTECTED** endpoints, authorization JWT token must be sent in 
 headers.
 
-| Parameter | Type     | Description                       |
+| Header | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `auth-token`      | `string` | **Required**. JWT Token received after login. |
 
