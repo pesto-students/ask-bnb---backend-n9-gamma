@@ -38,7 +38,7 @@ exports.newBooking = async (req, res) => {
         },
       });
 
-    // Save the booking details in DB
+    // Create new Booking model object
     const booking = new Booking({
       _id: order.id,
       user_id: req.user._id,
@@ -110,4 +110,41 @@ exports.verifyPayment = async (req, res) => {
       ...{ status: 'Success', code: 200, message: 'Booking Confirmed' },
     });
   });
+};
+
+// Get booking history of user
+exports.getBookingHistory = async (req, res) => {
+  // Initialize response object to send
+  const responseObject = {
+    status: null,
+    code: null,
+    message: null,
+    data: {},
+  };
+
+  // Find booking history of request user
+  const bookings = await Booking.find({ user_id: req.user._id });
+  try {
+    if (bookings.length) {
+      res.send({
+        ...responseObject,
+        ...{
+          status: 'Success',
+          code: 200,
+          message: '',
+          data: bookings,
+        },
+      });
+    } else {
+      res.send({
+        ...responseObject,
+        ...{ status: 'Error', code: 400, message: 'No bookings to show' },
+      });
+    }
+  } catch (error) {
+    res.send({
+      ...responseObject,
+      ...{ status: 'Error', code: 400, message: 'Sorry something went wrong.' },
+    });
+  }
 };
