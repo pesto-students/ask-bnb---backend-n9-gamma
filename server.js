@@ -37,7 +37,7 @@ server.use('/api/booking', bookingRoutes);
 server.use('/api/hotel', hotelRoutes);
 
 server.get('/', (req, res) => {
-  res.send('Hello AskBnB');
+  res.send('Server is up and running');
 });
 
 const PORT = process.env.PORT || 9000;
