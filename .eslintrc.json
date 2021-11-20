@@ -4,6 +4,7 @@
   "rules": {
     "no-console": "off",
     "no-underscore-dangle": "off",
-    "object-shorthand": "off"
+    "object-shorthand": "off",
+    "camelcase": "off"
   }
 }

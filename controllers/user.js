@@ -181,7 +181,9 @@ exports.googlelogin = async (req, res) => {
           message: 'Login successful',
           data: {
             token,
-            user: { _id, name, email },
+            _id,
+            name,
+            email,
           },
         },
       });
@@ -210,7 +212,9 @@ exports.googlelogin = async (req, res) => {
           message: 'Login successful',
           data: {
             token,
-            user: { _id: savedUser._id, name, email },
+            _id: savedUser._id,
+            name,
+            email,
           },
         },
       });
