@@ -5,6 +5,7 @@ const cors = require('cors');
 // Import Routes
 const userRoutes = require('./routes/user');
 const bookingRoutes = require('./routes/booking');
+const hotelRoutes = require('./routes/hotel');
 
 const server = express();
 dotenv.config();
@@ -16,7 +17,7 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
   },
-  (err) => {
+  err => {
     if (err) {
       console.log(err);
     } else {
@@ -26,13 +27,19 @@ mongoose.connect(
 );
 
 // Middlewares
-server.use(express.json());
-server.use(cors());
+server.use(express.json({ extended: false }));
+server.use(
+  cors({
+    origin: 'http://localhost:3000',
+    // credentials: true,
+  })
+);
 // server.use(express.urlencoded({ extended: true }));
 
 // Routes Middlewares
 server.use('/api/user', userRoutes);
 server.use('/api/booking', bookingRoutes);
+server.use('/api/hotel', hotelRoutes);
 
 server.get('/', (req, res) => {
   res.send('Hello AskBnB');
