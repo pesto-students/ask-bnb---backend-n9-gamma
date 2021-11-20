@@ -43,6 +43,10 @@ exports.newBooking = async (req, res) => {
       _id: order.id,
       user_id: req.user._id,
       hotel_id: req.body.hotel_id,
+      hotel_name: req.body.hotel_name,
+      city: req.body.city,
+      guests: req.body.guests,
+      status: 'Pending',
       check_in: req.body.check_in,
       check_out: req.body.check_out,
       rooms_booked: req.body.rooms_booked,
@@ -51,7 +55,7 @@ exports.newBooking = async (req, res) => {
     });
 
     // Save booking to DB
-    booking.save((error) => {
+    booking.save(error => {
       if (error) {
         res.send({
           ...responseObject,
@@ -92,24 +96,28 @@ exports.verifyPayment = async (req, res) => {
 
   // Update the booking with the above order_id with payment_id set to above payment_id
   // const booking = await Booking.findOne({ _id: order_id });
-  Booking.updateOne({ _id: order_id }, { payment_id: payment_id }, (err) => {
-    if (err) {
+  Booking.updateOne(
+    { _id: order_id },
+    { payment_id: payment_id, status: 'Confirmed' },
+    err => {
+      if (err) {
+        res.send({
+          ...responseObject,
+          ...{
+            status: 'Error',
+            code: 400,
+            message: 'Something went wrong. Please try again.',
+          },
+        });
+      }
+
+      // Send success message
       res.send({
         ...responseObject,
-        ...{
-          status: 'Error',
-          code: 400,
-          message: 'Something went wrong. Please try again.',
-        },
+        ...{ status: 'Success', code: 200, message: 'Booking Confirmed' },
       });
     }
-
-    // Send success message
-    res.send({
-      ...responseObject,
-      ...{ status: 'Success', code: 200, message: 'Booking Confirmed' },
-    });
-  });
+  );
 };
 
 // Get booking history of user

@@ -13,6 +13,18 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  hotel_name: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  guests: {
+    type: String,
+    required: true,
+  },
   check_in: {
     type: String,
     required: true,
@@ -23,6 +35,10 @@ const bookingSchema = new mongoose.Schema({
   },
   rooms_booked: [{ room_type: String, room_id: String, price: Number }],
   total_amount: {
+    type: String,
+    required: true,
+  },
+  status: {
     type: String,
     required: true,
   },
