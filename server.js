@@ -27,13 +27,8 @@ mongoose.connect(
 );
 
 // Middlewares
-server.use(express.json({ extended: false }));
-server.use(
-  cors({
-    origin: 'http://localhost:3000',
-    // credentials: true,
-  })
-);
+server.use(express.json());
+server.use(cors());
 // server.use(express.urlencoded({ extended: true }));
 
 // Routes Middlewares
