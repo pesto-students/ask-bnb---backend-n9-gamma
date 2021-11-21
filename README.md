@@ -5,7 +5,6 @@ This is the API for hotel room booking application. This API is divided into dif
   * **User**
   * **Booking**
   * **Hotels**
-  * **Rooms**
 
 The API provides responses in the following standard JSON format
 ```
@@ -96,6 +95,34 @@ Creates a order with **Razorpay API**, saves the booking data to database and re
 No parameters.
 
 Returns all bookings for the logged in user.
+
+### Hotels
+#### Get hotel List
+
+```http
+  GET /api/hotel/getHotels
+  ```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `location`      | `string` | **Required**. |
+| `select`      | `string` | **Optional**. |
+
+Returns all hotels available in the specified location
+
+#### Block rooms
+
+```http
+  GET /api/hotel/add
+  ```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `hotel_id`      | `string` | **Required**. |
+| `selected_rooms`      | `string` | **Required**. |
+| `startDate`      | `string` | **Required**. |
+| `endDate`      | `string` | **Required**. |
+ 
+Block the calender for the selected room for theselected time.
+
 ## Usage/Examples
 
 ```javascript
