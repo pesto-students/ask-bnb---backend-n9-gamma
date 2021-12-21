@@ -69,9 +69,10 @@ The application provides the following features -
 ## API Reference
 
 This is the API for hotel room booking application. This API is divided into diffrent modules viz.
-  * **User**
-  * **Booking**
-  * **Hotels**
+  * [**User**](#user)
+  * [**Booking**](#booking)
+  * [**Hotels**](#hotels)
+
 
 The API provides responses in the following standard JSON format
 ```
