@@ -1,6 +1,7 @@
 
 # AskBnB - Hotel Room Booking API Server
 <br/>
+
 ![ASKBnB Logo](./Frame.jpg)
 
 **AskBnB** is an online hotel room booking application. The application is designed
