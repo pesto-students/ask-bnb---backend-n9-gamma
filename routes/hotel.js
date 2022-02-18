@@ -1,11 +1,13 @@
 const router = require('express').Router();
 const {
-  add,
-  update,
-  getHotelIds,
-  getHotelRooms,
-  getHotels,
-  blockRooms,
+	add,
+	update,
+	getHotelIds,
+	getHotelRooms,
+	getHotels,
+	blockRooms,
+	getReviews,
+	addReview,
 } = require('../controllers/hotel');
 
 // @route   POST api/hotel/add
@@ -27,6 +29,16 @@ router.get('/getHotels', getHotels);
 // @desc    Get rooms list in hotel
 // @access  Public
 router.get('/getHotelRooms', getHotelRooms);
+
+// @route   GET api/hotel/addReviews
+// @desc    Add new hotel review
+// @access  Public
+router.post('/addReview', addReview);
+
+// @route   GET api/hotel/getReviews
+// @desc    Get hotel reviews
+// @access  Public
+router.get('/getReviews', getReviews);
 
 router.put('/update', update);
 
